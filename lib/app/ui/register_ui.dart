@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 
 class RegisterUi extends StatelessWidget {
   const RegisterUi({super.key});
@@ -43,6 +44,51 @@ class RegisterUi extends StatelessWidget {
                         45,
                       ),
                     ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                       const CustomTextField(
+                        labelText: "Email",
+                        iconPref: Icons.email,
+                      ),
+                      const CustomTextField(
+                        labelText: "Senha",
+                        iconPref: Icons.lock,
+                        isSecret: true,
+                      ),
+                      const CustomTextField(
+                        labelText: "Nome",
+                        iconPref: Icons.person,
+                      ),
+                      const CustomTextField(
+                        labelText: "Celular",
+                        iconPref: Icons.phone,
+                      ),
+                      const CustomTextField(
+                        labelText: "CPF",
+                        iconPref: Icons.file_copy,
+                      ),
+                      SizedBox(
+                        height: 40,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                18,
+                              ),
+                            ),
+                            textStyle: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            "Cadastrar Usuário",
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
