@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'Quitana Virtual',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white.withAlpha(
+          190,
+        ),
       ),
       home: const LoginUi(),
       debugShowCheckedModeBanner: false,
