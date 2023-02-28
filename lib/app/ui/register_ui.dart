@@ -31,7 +31,20 @@ class RegisterUi extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 32,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(
+                        45,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
