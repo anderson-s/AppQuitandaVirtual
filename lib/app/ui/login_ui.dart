@@ -31,16 +31,15 @@ class LoginUi extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  children: const [
+                  children: [
                     CustomTextField(
                       labelText: "Email",
-                      icon: Icons.email,
-                      obscureText: false,
+                      iconPref: Icons.email,
                     ),
                     CustomTextField(
                       labelText: "Senha",
-                      icon: Icons.lock,
-                      obscureText: true,
+                      iconPref: Icons.lock,
+                      isSecret: true,
                     )
                   ],
                 ),
