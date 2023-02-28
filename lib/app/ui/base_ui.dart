@@ -20,7 +20,7 @@ class _BaseUiState extends State<BaseUi> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           children: [
-            const HomeUiTab(),
+            HomeUiTab(),
             Container(
               color: Colors.yellow,
             ),
