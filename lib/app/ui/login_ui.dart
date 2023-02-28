@@ -113,7 +113,7 @@ class LoginUi extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => const BaseUi(),
+                                builder: (_) => BaseUi(),
                               ),
                             );
                           },

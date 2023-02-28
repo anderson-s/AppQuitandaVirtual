@@ -1,22 +1,54 @@
 import 'package:flutter/material.dart';
 
-class BaseUi extends StatelessWidget {
-  const BaseUi({super.key});
+class BaseUi extends StatefulWidget {
+  BaseUi({super.key});
+
+  @override
+  State<BaseUi> createState() => _BaseUiState();
+}
+
+class _BaseUiState extends State<BaseUi> {
+  int indexPage = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          color: Colors.red,
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: [
+            Container(
+              color: Colors.red,
+            ),
+            Container(
+              color: Colors.yellow,
+            ),
+            Container(
+              color: Colors.blue,
+            ),
+            Container(
+              color: Colors.black,
+            )
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: indexPage,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.green,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white.withAlpha(
             100,
           ),
+          onTap: (value) {
+            setState(
+              () {
+                indexPage = value;
+                pageController.jumpToPage(value);
+              },
+            );
+          },
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
