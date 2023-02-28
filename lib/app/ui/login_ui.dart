@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 
 class LoginUi extends StatelessWidget {
   const LoginUi({super.key});
@@ -30,34 +31,17 @@ class LoginUi extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  children: [
-                    TextFormField(
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        labelText: "Email",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                            18,
-                          ),
-                        ),
-                      ),
+                  children: const [
+                    CustomTextField(
+                      labelText: "Email",
+                      icon: Icons.email,
+                      obscureText: false,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          labelText: "Senha",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                              18,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    CustomTextField(
+                      labelText: "Senha",
+                      icon: Icons.lock,
+                      obscureText: true,
+                    )
                   ],
                 ),
               ),
