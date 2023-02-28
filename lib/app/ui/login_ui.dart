@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 
 class LoginUi extends StatelessWidget {
@@ -9,7 +10,7 @@ class LoginUi extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: CustomColors.customSwatchColor,
         body: Column(
           children: [
             Expanded(
@@ -17,13 +18,13 @@ class LoginUi extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text.rich(
+                  Text.rich(
                     TextSpan(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 40,
                       ),
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: "Green",
                           style: TextStyle(
                             color: Colors.white,
@@ -33,7 +34,7 @@ class LoginUi extends StatelessWidget {
                         TextSpan(
                           text: "grocer",
                           style: TextStyle(
-                            color: Colors.red,
+                            color: CustomColors.customContrastColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -112,10 +113,10 @@ class LoginUi extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text(
+                      child: Text(
                         "Esqueceu a senha?",
                         style: TextStyle(
-                          color: Colors.red,
+                          color: CustomColors.customContrastColor,
                         ),
                       ),
                     ),
@@ -158,13 +159,13 @@ class LoginUi extends StatelessWidget {
                             18,
                           ),
                         ),
-                        side: const BorderSide(
+                        side: BorderSide(
                           width: 2,
-                          color: Colors.green,
+                          color: CustomColors.customSwatchColor,
                         ),
-                        textStyle: const TextStyle(
+                        textStyle: TextStyle(
                           fontSize: 18,
-                          color: Colors.green,
+                          color: CustomColors.customSwatchColor,
                         ),
                       ),
                       child: const Text(
