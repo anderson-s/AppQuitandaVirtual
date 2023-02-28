@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 
@@ -12,8 +13,55 @@ class LoginUi extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: Container(
-                color: Colors.green,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text.rich(
+                    TextSpan(
+                      style: TextStyle(
+                        fontSize: 40,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "Green",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: "grocer",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                    child: SizedBox(
+                      height: 30,
+                      child: AnimatedTextKit(
+                        pause: Duration.zero,
+                        repeatForever: true,
+                        animatedTexts: [
+                          FadeAnimatedText("Frutas"),
+                          FadeAnimatedText("Legumes"),
+                          FadeAnimatedText("Verduras"),
+                          FadeAnimatedText("Laticínios"),
+                          FadeAnimatedText("Cereais"),
+                          FadeAnimatedText("Carnes"),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Container(
