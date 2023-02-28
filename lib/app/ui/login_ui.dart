@@ -31,16 +31,48 @@ class LoginUi extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    CustomTextField(
+                    const CustomTextField(
                       labelText: "Email",
                       iconPref: Icons.email,
                     ),
-                    CustomTextField(
+                    const CustomTextField(
                       labelText: "Senha",
                       iconPref: Icons.lock,
                       isSecret: true,
-                    )
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              18,
+                            ),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          "Entrar",
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Esqueceu a senha?",
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
