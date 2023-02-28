@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/app/ui/base_ui.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 import 'package:quitanda_virtual/app/ui/register_ui.dart';
@@ -108,7 +109,14 @@ class LoginUi extends StatelessWidget {
                               fontSize: 18,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const BaseUi(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             "Entrar",
                           ),
