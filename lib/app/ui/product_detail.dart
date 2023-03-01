@@ -23,8 +23,11 @@ class ProductDetail extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Image.asset(
-                          item.urlImage,
+                        child: Hero(
+                          tag: item.urlImage,
+                          child: Image.asset(
+                            item.urlImage,
+                          ),
                         ),
                       ),
                       Expanded(

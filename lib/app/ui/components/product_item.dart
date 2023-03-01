@@ -25,8 +25,11 @@ class ProductItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: Image.asset(
-                    item.urlImage,
+                  child: Hero(
+                    tag: item.urlImage,
+                    child: Image.asset(
+                      item.urlImage,
+                    ),
                   ),
                 ),
                 Text(
