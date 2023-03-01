@@ -27,7 +27,8 @@ class RegisterUi extends StatelessWidget {
         backgroundColor: CustomColors.customSwatchColor,
         body: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).padding.top,
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [

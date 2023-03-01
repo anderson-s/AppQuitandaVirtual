@@ -14,7 +14,8 @@ class ProductDetail extends StatelessWidget {
         backgroundColor: Colors.grey.shade300,
         body: SingleChildScrollView(
           child: SizedBox(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top,
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
@@ -56,9 +57,11 @@ class ProductDetail extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       item.itemName,
+                                      maxLines: 2,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 22,
+                                        overflow: TextOverflow.ellipsis,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -75,10 +78,17 @@ class ProductDetail extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text(
-                                    item.description,
-                                    textAlign: TextAlign.justify,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                  ),
+                                  child: SingleChildScrollView(
+                                    child: Text(
+                                      item.description,
+                                      textAlign: TextAlign.justify,
+                                      style: const TextStyle(
+                                        height: 1.5,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
