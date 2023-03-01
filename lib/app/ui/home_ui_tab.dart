@@ -4,6 +4,7 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 // ignore: library_prefixes
 import 'package:badges/badges.dart' as packageBadge;
 import 'package:quitanda_virtual/app/ui/components/custom_category_tile.dart';
+import 'package:quitanda_virtual/app/ui/components/product_item.dart';
 
 class HomeUiTab extends StatefulWidget {
   const HomeUiTab({super.key});
@@ -146,15 +147,12 @@ class _HomeUiTabState extends State<HomeUiTab> {
                 physics: const BouncingScrollPhysics(),
                 itemCount: app_data.items.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 9/11.5
-                ),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 9 / 11.5),
                 itemBuilder: (_, index) {
-                  return Container(
-                    color: Colors.red,
-                  );
+                  return ProductItem(item: app_data.items[index]);
                 },
               ),
             )
