@@ -5,6 +5,7 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:badges/badges.dart' as packageBadge;
 import 'package:quitanda_virtual/app/ui/components/custom_category_tile.dart';
 import 'package:quitanda_virtual/app/ui/components/product_item.dart';
+import 'package:quitanda_virtual/app/ui/product_detail.dart';
 
 class HomeUiTab extends StatefulWidget {
   const HomeUiTab({super.key});
@@ -152,7 +153,17 @@ class _HomeUiTabState extends State<HomeUiTab> {
                     crossAxisSpacing: 10,
                     childAspectRatio: 9 / 11.5),
                 itemBuilder: (_, index) {
-                  return ProductItem(item: app_data.items[index]);
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ProductDetail(item: app_data.items[index]),
+                          ),
+                        );
+                      },
+                      child: ProductItem(item: app_data.items[index]));
                 },
               ),
             )
