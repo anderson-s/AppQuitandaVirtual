@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/app/data/provider/app_data.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 // ignore: library_prefixes
 import 'package:badges/badges.dart' as packageBadge;
 import 'package:quitanda_virtual/app/ui/components/custom_category_tile.dart';
 
 class HomeUiTab extends StatefulWidget {
-  HomeUiTab({super.key});
+  const HomeUiTab({super.key});
 
   @override
   State<HomeUiTab> createState() => _HomeUiTabState();
 }
 
 class _HomeUiTabState extends State<HomeUiTab> {
-  List<String> categorias = [
-    "Frutas",
-    "Legumes",
-    "Verduras",
-    "Cereais",
-    "Laticinios",
-    "Carnes",
-    "Temperos",
-    "Grãos",
-  ];
-
   String selected = "Frutas";
 
   @override
@@ -136,9 +126,11 @@ class _HomeUiTabState extends State<HomeUiTab> {
                   category: categorias[index],
                   isSelected: categorias[index] == selected,
                   onPressed: () {
-                    setState(() {
-                      selected = categorias[index];
-                    });
+                    setState(
+                      () {
+                        selected = categorias[index];
+                      },
+                    );
                   },
                 ),
               ),

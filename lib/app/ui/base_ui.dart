@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/home_ui_tab.dart';
 
 class BaseUi extends StatefulWidget {
-  BaseUi({super.key});
+  const BaseUi({super.key});
 
   @override
   State<BaseUi> createState() => _BaseUiState();
@@ -20,7 +20,7 @@ class _BaseUiState extends State<BaseUi> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           children: [
-            HomeUiTab(),
+            const HomeUiTab(),
             Container(
               color: Colors.yellow,
             ),
