@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quitanda_virtual/app/data/provider/app_data.dart';
+import 'package:quitanda_virtual/app/data/provider/app_data.dart' as app_data;
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 // ignore: library_prefixes
 import 'package:badges/badges.dart' as packageBadge;
@@ -118,21 +118,44 @@ class _HomeUiTabState extends State<HomeUiTab> {
               height: 40,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: categorias.length,
+                itemCount: app_data.categorias.length,
                 separatorBuilder: (_, index) => const SizedBox(
                   width: 10,
                 ),
                 itemBuilder: (_, index) => CustomCategoryTile(
-                  category: categorias[index],
-                  isSelected: categorias[index] == selected,
+                  category: app_data.categorias[index],
+                  isSelected: app_data.categorias[index] == selected,
                   onPressed: () {
                     setState(
                       () {
-                        selected = categorias[index];
+                        selected = app_data.categorias[index];
                       },
                     );
                   },
                 ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.fromLTRB(
+                  16,
+                  0,
+                  16,
+                  16,
+                ),
+                physics: const BouncingScrollPhysics(),
+                itemCount: app_data.items.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 9/11.5
+                ),
+                itemBuilder: (_, index) {
+                  return Container(
+                    color: Colors.red,
+                  );
+                },
               ),
             )
           ],
