@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/model/item_model.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
+import 'package:quitanda_virtual/app/ui/widgets/quantify_widget.dart';
 
 class ProductDetail extends StatelessWidget {
   final ItemModel item;
@@ -69,6 +70,7 @@ class ProductDetail extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                  const QuantifyWidget()
                                 ],
                               ),
                               Text(

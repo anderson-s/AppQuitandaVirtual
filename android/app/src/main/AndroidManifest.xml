@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.quitanda_virtual">
    <application
-        android:label="quitanda_virtual"
+        android:label="Quitanda Virtual"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
