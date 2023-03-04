@@ -3,7 +3,14 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_quantify.dart';
 
 class QuantifyWidget extends StatelessWidget {
-  const QuantifyWidget({super.key});
+  final int value;
+  final String suffixText;
+  final Function(int quantify) result;
+  const QuantifyWidget(
+      {super.key,
+      required this.value,
+      required this.suffixText,
+      required this.result});
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +36,21 @@ class QuantifyWidget extends StatelessWidget {
           CustomQuantify(
             icon: Icons.remove,
             color: Colors.green,
-            function: () {},
+            function: () {
+              if (value == 1) {
+                return;
+              }
+              int resultCount = value - 1;
+              result(resultCount);
+            },
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
+          Padding(
+            padding: const EdgeInsets.symmetric(
               horizontal: 6,
             ),
             child: Text(
-              "1kg",
-              style: TextStyle(
+              "$value$suffixText",
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
@@ -46,7 +59,10 @@ class QuantifyWidget extends StatelessWidget {
           CustomQuantify(
             icon: Icons.add,
             color: CustomColors.customSwatchColor,
-            function: () {},
+            function: () {
+              int resultCount = value + 1;
+              result(resultCount);
+            },
           ),
         ],
       ),

@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/model/item_model.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
-import 'package:quitanda_virtual/app/ui/widgets/quantify_widget.dart';
+import 'package:quitanda_virtual/app/ui/widgets/quantity_widget.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
   final ItemModel item;
   const ProductDetail({super.key, required this.item});
 
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  int cartItem = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,9 +31,9 @@ class ProductDetail extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Hero(
-                          tag: item.urlImage,
+                          tag: widget.item.urlImage,
                           child: Image.asset(
-                            item.urlImage,
+                            widget.item.urlImage,
                           ),
                         ),
                       ),
@@ -60,7 +66,7 @@ class ProductDetail extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      item.itemName,
+                                      widget.item.itemName,
                                       maxLines: 2,
                                       style: const TextStyle(
                                         color: Colors.black,
@@ -70,11 +76,20 @@ class ProductDetail extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const QuantifyWidget()
+                                  QuantifyWidget(
+                                    suffixText: widget.item.unit,
+                                    value: cartItem,
+                                    result: (quantify) {
+                                      setState(() {
+                                        cartItem = quantify;
+                                      });
+                                    },
+                                  )
                                 ],
                               ),
                               Text(
-                                UtilServices().priceToCurrency(item.price),
+                                UtilServices()
+                                    .priceToCurrency(widget.item.price),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -88,7 +103,7 @@ class ProductDetail extends StatelessWidget {
                                   ),
                                   child: SingleChildScrollView(
                                     child: Text(
-                                      item.description,
+                                      widget.item.description,
                                       textAlign: TextAlign.justify,
                                       style: const TextStyle(
                                         height: 1.5,
