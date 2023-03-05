@@ -7,4 +7,8 @@ class CartModel {
     required this.item,
     required this.quantity,
   });
+
+  totalPrice() {
+    return item.price * quantity;
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/provider/app_data.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_cart_item.dart';
 
 class CartUiTab extends StatelessWidget {
   CartUiTab({super.key});
@@ -24,7 +25,9 @@ class CartUiTab extends StatelessWidget {
               child: ListView.builder(
                 itemCount: itemsCart.length,
                 itemBuilder: (_, index) {
-                  return Text(itemsCart[index].item.itemName);
+                  return CustomCartItem(
+                    cart: itemsCart[index],
+                  );
                 },
               ),
             ),

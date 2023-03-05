@@ -32,10 +32,11 @@ class QuantifyWidget extends StatelessWidget {
         ],
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           CustomQuantify(
             icon: Icons.remove,
-            color: Colors.green,
+            color: Colors.grey,
             function: () {
               if (value == 1) {
                 return;
