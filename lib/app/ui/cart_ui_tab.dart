@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
+import 'package:quitanda_virtual/app/data/provider/app_data.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 
 class CartUiTab extends StatelessWidget {
@@ -19,9 +20,13 @@ class CartUiTab extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Expanded(child: Placeholder()),
-            const SizedBox(
-              height: 20,
+            Expanded(
+              child: ListView.builder(
+                itemCount: itemsCart.length,
+                itemBuilder: (_, index) {
+                  return Text(itemsCart[index].item.itemName);
+                },
+              ),
             ),
             Container(
               padding: const EdgeInsets.all(
