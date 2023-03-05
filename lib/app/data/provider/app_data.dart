@@ -83,10 +83,10 @@ List<CartModel> itemsCart = [
   ),
   CartModel(
     item: guava,
-    quantity: 2,
+    quantity: 1,
   ),
   CartModel(
     item: kiwi,
-    quantity: 3,
+    quantity: 1,
   ),
 ];

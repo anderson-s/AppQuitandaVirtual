@@ -6,11 +6,14 @@ class QuantifyWidget extends StatelessWidget {
   final int value;
   final String suffixText;
   final Function(int quantify) result;
-  const QuantifyWidget(
-      {super.key,
-      required this.value,
-      required this.suffixText,
-      required this.result});
+  final bool isRemovable;
+  const QuantifyWidget({
+    super.key,
+    required this.value,
+    required this.suffixText,
+    required this.result,
+    this.isRemovable = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +38,10 @@ class QuantifyWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomQuantify(
-            icon: Icons.remove,
-            color: Colors.grey,
+            icon: !isRemovable || value > 1  ? Icons.remove : Icons.delete_forever,
+            color: !isRemovable || value > 1 ? Colors.grey : CustomColors.customContrastColor,
             function: () {
-              if (value == 1) {
+              if (value == 1 && !isRemovable) {
                 return;
               }
               int resultCount = value - 1;

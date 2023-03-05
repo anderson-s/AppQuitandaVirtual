@@ -4,10 +4,18 @@ import 'package:quitanda_virtual/app/data/model/cart_model.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/widgets/quantity_widget.dart';
 
-class CustomCartItem extends StatelessWidget {
+class CustomCartItem extends StatefulWidget {
   final CartModel cart;
-  CustomCartItem({super.key, required this.cart});
+  final Function(CartModel) remove;
+  const CustomCartItem({super.key, required this.cart, required this.remove});
+
+  @override
+  State<CustomCartItem> createState() => _CustomCartItemState();
+}
+
+class _CustomCartItemState extends State<CustomCartItem> {
   final UtilServices utilServices = UtilServices();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,19 +32,19 @@ class CustomCartItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: Image.asset(
-          cart.item.urlImage,
+          widget.cart.item.urlImage,
           height: 60,
           width: 60,
         ),
         title: Text(
-          cart.item.itemName,
+          widget.cart.item.itemName,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
         ),
         subtitle: Text(
           utilServices.priceToCurrency(
-            cart.totalPrice(),
+            widget.cart.totalPrice(),
           ),
           style: TextStyle(
             color: CustomColors.customSwatchColor,
@@ -44,9 +52,19 @@ class CustomCartItem extends StatelessWidget {
           ),
         ),
         trailing: QuantifyWidget(
-          value: cart.quantity,
-          suffixText: cart.item.unit,
-          result: (quantify) {},
+          value: widget.cart.quantity,
+          suffixText: widget.cart.item.unit,
+          isRemovable: true,
+          result: (quantify) {
+            setState(
+              () {
+                widget.cart.quantity = quantify;
+                if (quantify == 0) {
+                  widget.remove(widget.cart);
+                }
+              },
+            );
+          },
         ),
       ),
     );
