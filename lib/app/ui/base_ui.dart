@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/app/ui/cart_ui_tab.dart';
 import 'package:quitanda_virtual/app/ui/home_ui_tab.dart';
 
 class BaseUi extends StatefulWidget {
@@ -21,9 +22,7 @@ class _BaseUiState extends State<BaseUi> {
           controller: pageController,
           children: [
             const HomeUiTab(),
-            Container(
-              color: Colors.yellow,
-            ),
+             CartUiTab(),
             Container(
               color: Colors.blue,
             ),
