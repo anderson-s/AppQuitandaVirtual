@@ -3,7 +3,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 
 class ProfileUiTab extends StatelessWidget {
-   ProfileUiTab({super.key});
+  ProfileUiTab({super.key});
 
   final phoneFormatter = MaskTextInputFormatter(
     mask: "(##) # ####-####",
@@ -12,6 +12,12 @@ class ProfileUiTab extends StatelessWidget {
     },
   );
 
+  final cpfFormatter = MaskTextInputFormatter(
+    mask: "###.###.###-##",
+    filter: {
+      "#": RegExp(r'[0-9]'),
+    },
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,30 +35,34 @@ class ProfileUiTab extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 25,
-            horizontal: 20,
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(
+            16,
+            32,
+            16,
+            16,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children:  [
-                const CustomTextField(
-                  labelText: "Email",
-                  iconPref: Icons.email,
-                ),
-                const CustomTextField(
-                  labelText: "Nome",
-                  iconPref: Icons.person,
-                ),
-                 CustomTextField(
-                            labelText: "Celular",
-                            formatters: [phoneFormatter],
-                            iconPref: Icons.phone,
-                          ),
-              ],
+          children: [
+            const CustomTextField(
+              labelText: "Email",
+              iconPref: Icons.email,
             ),
-          ),
+            const CustomTextField(
+              labelText: "Nome",
+              iconPref: Icons.person,
+            ),
+            CustomTextField(
+              labelText: "Celular",
+              formatters: [phoneFormatter],
+              iconPref: Icons.phone,
+            ),
+            CustomTextField(
+              labelText: "CPF",
+              iconPref: Icons.file_copy,
+              formatters: [cpfFormatter],
+              isSecret: true,
+            ),
+          ],
         ),
       ),
     );
