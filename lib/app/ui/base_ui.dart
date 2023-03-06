@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/cart_ui_tab.dart';
 import 'package:quitanda_virtual/app/ui/home_ui_tab.dart';
+import 'package:quitanda_virtual/app/ui/profile_ui_tab.dart';
 
 class BaseUi extends StatefulWidget {
   const BaseUi({super.key});
@@ -22,13 +23,11 @@ class _BaseUiState extends State<BaseUi> {
           controller: pageController,
           children: [
             const HomeUiTab(),
-             CartUiTab(),
+            const CartUiTab(),
             Container(
               color: Colors.blue,
             ),
-            Container(
-              color: Colors.black,
-            )
+            ProfileUiTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

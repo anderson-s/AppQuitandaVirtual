@@ -98,11 +98,7 @@ class _CartUiTabState extends State<CartUiTab> {
                         ),
                       ),
                       onPressed: () {
-                        showOrderConfimation().then(
-                          (value) {
-                            print(value);
-                          },
-                        );
+                        showOrderConfimation();
                       },
                       child: const Text(
                         "Concluir pedido",
