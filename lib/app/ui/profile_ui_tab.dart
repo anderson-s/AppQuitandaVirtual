@@ -3,9 +3,14 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 import 'package:quitanda_virtual/app/data/model/user_model.dart';
 
-class ProfileUiTab extends StatelessWidget {
-  ProfileUiTab({super.key});
+class ProfileUiTab extends StatefulWidget {
+  const ProfileUiTab({super.key});
 
+  @override
+  State<ProfileUiTab> createState() => _ProfileUiTabState();
+}
+
+class _ProfileUiTabState extends State<ProfileUiTab> {
   final phoneFormatter = MaskTextInputFormatter(
     mask: "(##) # ####-####",
     filter: {
@@ -19,6 +24,7 @@ class ProfileUiTab extends StatelessWidget {
       "#": RegExp(r'[0-9]'),
     },
   );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,13 +90,101 @@ class ProfileUiTab extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  updatePasswordDialog();
+                },
                 child: const Text("Atualizar senha"),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  updatePasswordDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              20,
+            ),
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(
+                  16,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12,
+                      ),
+                      child: Text(
+                        "Atualização de senha",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const CustomTextField(
+                      labelText: "Senha atual",
+                      isSecret: true,
+                      iconPref: Icons.lock,
+                    ),
+                    const CustomTextField(
+                      labelText: "Nova atual",
+                      isSecret: true,
+                      iconPref: Icons.lock_outline,
+                    ),
+                    const CustomTextField(
+                      labelText: "Confirmar nova senha",
+                      isSecret: true,
+                      iconPref: Icons.lock_outline,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              20,
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          "Atualizar",
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close_outlined,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
