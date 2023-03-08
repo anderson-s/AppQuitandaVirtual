@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
+import 'package:quitanda_virtual/app/data/model/cart_model.dart';
 import 'package:quitanda_virtual/app/data/model/order_model.dart';
 
 class CustomOrderTile extends StatelessWidget {
@@ -28,21 +29,86 @@ class CustomOrderTile extends StatelessWidget {
               Text(
                 "Pedido ${order.id}",
               ),
-               Text(
+              Text(
                 UtilServices().formatDateTime(order.createdDateTime),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   color: Colors.black,
                 ),
               ),
             ],
           ),
-          children: const [
+          childrenPadding: const EdgeInsets.fromLTRB(
+            16,
+            0,
+            16,
+            16,
+          ),
+          children: [
             SizedBox(
-              height: 100,
+              height: 150,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: ListView(
+                      children: order.items
+                          .map(
+                            (orderItem) => _OrderItemWidget(
+                              orderItem: orderItem,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _OrderItemWidget extends StatelessWidget {
+  final CartModel orderItem;
+
+  const _OrderItemWidget({
+    required this.orderItem,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 10,
+      ),
+      child: Row(
+        children: [
+          Text(
+            "${orderItem.quantity} ${orderItem.item.unit}",
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              orderItem.item.itemName,
+            ),
+          ),
+          Text(
+            UtilServices().priceToCurrency(
+              orderItem.totalPrice(),
+            ),
+          )
+        ],
       ),
     );
   }
