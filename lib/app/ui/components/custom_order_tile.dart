@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/model/cart_model.dart';
 import 'package:quitanda_virtual/app/data/model/order_model.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_order_status.dart';
 
 class CustomOrderTile extends StatelessWidget {
   final OrderModel order;
@@ -61,10 +62,16 @@ class CustomOrderTile extends StatelessWidget {
                           .toList(),
                     ),
                   ),
-                  Expanded(
+                  VerticalDivider(
+                    color: Colors.grey.shade300,
+                    thickness: 2,
+                    width: 8,
+                  ),
+                   Expanded(
                     flex: 2,
-                    child: Container(
-                      color: Colors.blue,
+                    child: CustomOrderStatus(
+                      isOverduo: order.overdueDateTime.isBefore(DateTime.now()),
+                      status: order.status,
                     ),
                   ),
                 ],
