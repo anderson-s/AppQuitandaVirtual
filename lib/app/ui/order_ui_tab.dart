@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/data/provider/app_data.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_order_tile.dart';
 
 class OrdersUiTab extends StatelessWidget {
   const OrdersUiTab({super.key});
@@ -20,7 +21,7 @@ class OrdersUiTab extends StatelessWidget {
           ),
           physics: const BouncingScrollPhysics(),
           separatorBuilder: (_, index) => const SizedBox(height: 10),
-          itemBuilder: (context, index) => Text(orders[index].status),
+          itemBuilder: (context, index) => CustomOrderTile(order: orders[index]),
         ),
       ),
     );
