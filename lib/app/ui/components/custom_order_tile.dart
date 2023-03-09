@@ -23,6 +23,7 @@ class CustomOrderTile extends StatelessWidget {
           dividerColor: Colors.transparent,
         ),
         child: ExpansionTile(
+          initiallyExpanded: order.status == "pending_payment",
           title: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,20 +47,22 @@ class CustomOrderTile extends StatelessWidget {
             16,
           ),
           children: [
-            SizedBox(
-              height: 150,
+            IntrinsicHeight(
               child: Row(
                 children: [
                   Expanded(
                     flex: 3,
-                    child: ListView(
-                      children: order.items
-                          .map(
-                            (orderItem) => _OrderItemWidget(
-                              orderItem: orderItem,
-                            ),
-                          )
-                          .toList(),
+                    child: SizedBox(
+                      height: 150,
+                      child: ListView(
+                        children: order.items
+                            .map(
+                              (orderItem) => _OrderItemWidget(
+                                orderItem: orderItem,
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                   ),
                   VerticalDivider(
@@ -71,6 +74,7 @@ class CustomOrderTile extends StatelessWidget {
                     flex: 2,
                     child: CustomOrderStatus(
                       isOverduo: order.overdueDateTime.isBefore(DateTime.now()),
+                      // isOverduo: false,
                       status: order.status,
                     ),
                   ),
