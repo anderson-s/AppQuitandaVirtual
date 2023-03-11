@@ -46,6 +46,7 @@ class CustomOrderTile extends StatelessWidget {
             16,
             16,
           ),
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             IntrinsicHeight(
               child: Row(
@@ -70,7 +71,7 @@ class CustomOrderTile extends StatelessWidget {
                     thickness: 2,
                     width: 8,
                   ),
-                   Expanded(
+                  Expanded(
                     flex: 2,
                     child: CustomOrderStatus(
                       isOverduo: order.overdueDateTime.isBefore(DateTime.now()),
@@ -80,7 +81,46 @@ class CustomOrderTile extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            Text.rich(
+              TextSpan(
+                style: const TextStyle(
+                  // fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+                children: [
+                  const TextSpan(
+                    text: "Total",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: UtilServices().priceToCurrency(order.total),
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: order.status == "pending_payment",
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      20,
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+                icon: Image.asset(
+                  "assets/images/pix.png",
+                  height: 18,
+                ),
+                label: const Text(
+                  "Ver QR Code Pix",
+                ),
+              ),
+            ),
           ],
         ),
       ),
