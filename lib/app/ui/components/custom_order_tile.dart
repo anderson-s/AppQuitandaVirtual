@@ -3,6 +3,7 @@ import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/model/cart_model.dart';
 import 'package:quitanda_virtual/app/data/model/order_model.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_order_status.dart';
+import 'package:quitanda_virtual/app/ui/widgets/payment_dialog.dart';
 
 class CustomOrderTile extends StatelessWidget {
   final OrderModel order;
@@ -111,7 +112,14 @@ class CustomOrderTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return PaymentDialog(order: order);
+                    },
+                  );
+                },
                 icon: Image.asset(
                   "assets/images/pix.png",
                   height: 18,
