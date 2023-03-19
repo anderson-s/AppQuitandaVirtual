@@ -5,7 +5,9 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 
 class ProductItem extends StatelessWidget {
   final ItemModel item;
-  const ProductItem({super.key, required this.item});
+  final void Function(GlobalKey) cartAnimationMethod;
+  final GlobalKey imageGk = GlobalKey();
+   ProductItem({super.key, required this.item, required this.cartAnimationMethod});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class ProductItem extends StatelessWidget {
                     tag: item.urlImage,
                     child: Image.asset(
                       item.urlImage,
+                      key: imageGk,
                     ),
                   ),
                 ),
@@ -67,7 +70,9 @@ class ProductItem extends StatelessWidget {
           top: 4,
           right: 4,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              cartAnimationMethod(imageGk);
+            },
             child: Container(
               height: 40,
               width: 35,
