@@ -7,7 +7,8 @@ class ProductItem extends StatelessWidget {
   final ItemModel item;
   final void Function(GlobalKey) cartAnimationMethod;
   final GlobalKey imageGk = GlobalKey();
-   ProductItem({super.key, required this.item, required this.cartAnimationMethod});
+  ProductItem(
+      {super.key, required this.item, required this.cartAnimationMethod});
 
   @override
   Widget build(BuildContext context) {
@@ -69,27 +70,32 @@ class ProductItem extends StatelessWidget {
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {
-              cartAnimationMethod(imageGk);
-            },
-            child: Container(
-              height: 40,
-              width: 35,
-              decoration: BoxDecoration(
-                color: CustomColors.customSwatchColor,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(
-                    15,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(
+                15,
+              ),
+              topRight: Radius.circular(
+                20,
+              ),
+            ),
+            child: Material(
+              child: InkWell(
+                onTap: () {
+                  cartAnimationMethod(imageGk);
+                },
+                child: Ink(
+                  height: 40,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: CustomColors.customSwatchColor,
                   ),
-                  topRight: Radius.circular(
-                    20,
+                  child: const Icon(
+                    Icons.add_shopping_cart,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ),
-              ),
-              child: const Icon(
-                Icons.add_shopping_cart,
-                size: 20,
               ),
             ),
           ),
