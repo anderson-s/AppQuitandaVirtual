@@ -41,7 +41,9 @@ class _BaseUiState extends State<BaseUi> {
             setState(
               () {
                 indexPage = value;
-                pageController.jumpToPage(value);
+                // pageController.jumpToPage(value);
+                pageController.animateToPage(value
+                , duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
               },
             );
           },
