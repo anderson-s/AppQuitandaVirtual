@@ -55,6 +55,7 @@ class _HomeUiTabState extends State<HomeUiTab> {
                     badgeColor: CustomColors.customContrastColor,
                   ),
                   child: AddToCartIcon(
+                    
                     key: cartKey,
                     icon: Icon(
                       Icons.shopping_cart,
