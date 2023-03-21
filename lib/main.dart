@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quitanda_virtual/app/ui/login_ui.dart';
 import 'package:quitanda_virtual/app/ui/splash_screen.dart';
 
 void main() {

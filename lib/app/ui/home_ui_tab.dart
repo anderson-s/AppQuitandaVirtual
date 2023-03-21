@@ -7,6 +7,7 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:badges/badges.dart' as packageBadge;
 import 'package:quitanda_virtual/app/ui/components/custom_category_tile.dart';
 import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
+import 'package:quitanda_virtual/app/ui/components/custom_shimmer.dart';
 import 'package:quitanda_virtual/app/ui/components/product_item.dart';
 import 'package:quitanda_virtual/app/ui/product_detail.dart';
 
@@ -25,6 +26,21 @@ class _HomeUiTabState extends State<HomeUiTab> {
 
   void itemSelectedCartAnimations(GlobalKey gkImage) {
     runAddToCartAnimation(gkImage);
+  }
+
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      const Duration(
+        seconds: 3,
+      ),
+      () {
+        setState(() => isLoading = false);
+      },
+    );
   }
 
   @override
@@ -46,7 +62,7 @@ class _HomeUiTabState extends State<HomeUiTab> {
                 },
                 child: packageBadge.Badge(
                   badgeContent: Text(
-                   _cartQuantifyItems.toString(),
+                    _cartQuantifyItems.toString(),
                     style: const TextStyle(
                       color: Color.fromARGB(255, 227, 192, 192),
                       fontSize: 12,
@@ -56,7 +72,6 @@ class _HomeUiTabState extends State<HomeUiTab> {
                     badgeColor: CustomColors.customContrastColor,
                   ),
                   child: AddToCartIcon(
-                    
                     key: cartKey,
                     icon: Icon(
                       Icons.shopping_cart,
@@ -67,7 +82,7 @@ class _HomeUiTabState extends State<HomeUiTab> {
               ),
             ),
           ],
-          title: CustomAppName(),
+          title: const CustomAppName(),
           centerTitle: true,
         ),
         body: AddToCartAnimation(
@@ -76,7 +91,6 @@ class _HomeUiTabState extends State<HomeUiTab> {
           previewCurve: Curves.ease,
           receiveCreateAddToCardAnimationMethod: (p0) {
             runAddToCartAnimation = p0;
-           
           },
           child: Column(
             children: [
@@ -118,58 +132,98 @@ class _HomeUiTabState extends State<HomeUiTab> {
                   right: 10,
                 ),
                 height: 40,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: app_data.categorias.length,
-                  separatorBuilder: (_, index) => const SizedBox(
-                    width: 10,
-                  ),
-                  itemBuilder: (_, index) => CustomCategoryTile(
-                    category: app_data.categorias[index],
-                    isSelected: app_data.categorias[index] == selected,
-                    onPressed: () {
-                      setState(
-                        () {
-                          selected = app_data.categorias[index];
-                        },
-                      );
-                    },
-                  ),
-                ),
+                child: !isLoading
+                    ? ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: app_data.categorias.length,
+                        separatorBuilder: (_, index) => const SizedBox(
+                          width: 10,
+                        ),
+                        itemBuilder: (_, index) => CustomCategoryTile(
+                          category: app_data.categorias[index],
+                          isSelected: app_data.categorias[index] == selected,
+                          onPressed: () {
+                            setState(
+                              () {
+                                selected = app_data.categorias[index];
+                              },
+                            );
+                          },
+                        ),
+                      )
+                    : ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: List.generate(
+                          10,
+                          (index) => Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(
+                              right: 12,
+                            ),
+                            child: const CustomShimmer(
+                              height: 20,
+                              width: 80,
+                            ),
+                          ),
+                        ),
+                      ),
               ),
               Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.fromLTRB(
-                    16,
-                    0,
-                    16,
-                    16,
-                  ),
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: app_data.items.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 9 / 11.5),
-                  itemBuilder: (_, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                ProductDetail(item: app_data.items[index]),
+                child: !isLoading
+                    ? GridView.builder(
+                        padding: const EdgeInsets.fromLTRB(
+                          16,
+                          0,
+                          16,
+                          16,
+                        ),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: app_data.items.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                childAspectRatio: 9 / 11.5),
+                        itemBuilder: (_, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductDetail(
+                                      item: app_data.items[index]),
+                                ),
+                              );
+                            },
+                            child: ProductItem(
+                              item: app_data.items[index],
+                              cartAnimationMethod: runAddToCartAnimation,
+                            ),
+                          );
+                        },
+                      )
+                    : GridView.count(
+                        padding: const EdgeInsets.fromLTRB(
+                          16,
+                          0,
+                          16,
+                          16,
+                        ),
+                        physics: const BouncingScrollPhysics(),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 9 / 11.5,
+                        children: List.generate(
+                          app_data.items.length,
+                          (index) => CustomShimmer(
+                            height: double.infinity,
+                            width: double.infinity,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                        );
-                      },
-                      child: ProductItem(
-                        item: app_data.items[index],
-                        cartAnimationMethod: runAddToCartAnimation,
+                        ),
                       ),
-                    );
-                  },
-                ),
               )
             ],
           ),
@@ -178,5 +232,3 @@ class _HomeUiTabState extends State<HomeUiTab> {
     );
   }
 }
-
-
