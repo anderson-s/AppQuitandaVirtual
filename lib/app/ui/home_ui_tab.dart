@@ -6,6 +6,7 @@ import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 // ignore: library_prefixes
 import 'package:badges/badges.dart' as packageBadge;
 import 'package:quitanda_virtual/app/ui/components/custom_category_tile.dart';
+import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
 import 'package:quitanda_virtual/app/ui/components/product_item.dart';
 import 'package:quitanda_virtual/app/ui/product_detail.dart';
 
@@ -66,29 +67,7 @@ class _HomeUiTabState extends State<HomeUiTab> {
               ),
             ),
           ],
-          title: Text.rich(
-            TextSpan(
-              style: const TextStyle(
-                fontSize: 30,
-              ),
-              children: [
-                TextSpan(
-                  text: "Green",
-                  style: TextStyle(
-                    color: CustomColors.customSwatchColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(
-                  text: "grocer",
-                  style: TextStyle(
-                    color: CustomColors.customContrastColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          title: CustomAppName(),
           centerTitle: true,
         ),
         body: AddToCartAnimation(
@@ -199,3 +178,5 @@ class _HomeUiTabState extends State<HomeUiTab> {
     );
   }
 }
+
+

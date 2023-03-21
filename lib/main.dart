@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/login_ui.dart';
+import 'package:quitanda_virtual/app/ui/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           190,
         ),
       ),
-      home: const LoginUi(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/app/ui/base_ui.dart';
 
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
+import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 import 'package:quitanda_virtual/app/ui/register_ui.dart';
 
@@ -26,29 +27,11 @@ class LoginUi extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text.rich(
-                        TextSpan(
-                          style: const TextStyle(
-                            fontSize: 40,
-                          ),
-                          children: [
-                            const TextSpan(
-                              text: "Green",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            TextSpan(
-                              text: "grocer",
-                              style: TextStyle(
-                                color: CustomColors.customContrastColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                      const CustomAppName(
+                        textSize: 40,
+                        greenTitleColor: Colors.white,
                       ),
+                      // Text.rich(
                       DefaultTextStyle(
                         style: const TextStyle(
                           fontSize: 25,
