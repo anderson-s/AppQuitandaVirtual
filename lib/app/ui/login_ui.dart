@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:quitanda_virtual/app/ui/base_ui.dart';
+import 'package:get/get.dart';
+import 'package:quitanda_virtual/app/routes/app_routes.dart';
 
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
@@ -95,12 +96,7 @@ class LoginUi extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const BaseUi(),
-                              ),
-                            );
+                            Get.offAllNamed(AppRoutes.BASE_UI);
                           },
                           child: const Text(
                             "Entrar",
@@ -151,12 +147,8 @@ class LoginUi extends StatelessWidget {
                         height: 40,
                         child: OutlinedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => RegisterUi(),
-                              ),
-                            );
+                            Get.to(RegisterUi(),
+                                transition: Transition.rightToLeft);
                           },
                           style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(

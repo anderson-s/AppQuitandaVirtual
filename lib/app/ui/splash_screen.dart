@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quitanda_virtual/app/routes/app_routes.dart';
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
-import 'package:quitanda_virtual/app/ui/login_ui.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,11 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
         seconds: 2,
       ),
       () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const LoginUi(),
-            ),
-            (route) => false);
+        Get.offAllNamed(AppRoutes.LOGIN_UI);
       },
     );
   }

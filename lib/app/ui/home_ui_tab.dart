@@ -22,7 +22,7 @@ class _HomeUiTabState extends State<HomeUiTab> {
   String selected = "Frutas";
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
-  int _cartQuantifyItems = 0;
+  final int _cartQuantifyItems = 0;
 
   void itemSelectedCartAnimations(GlobalKey gkImage) {
     runAddToCartAnimation(gkImage);

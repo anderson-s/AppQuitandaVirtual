@@ -23,10 +23,10 @@ class _BaseUiState extends State<BaseUi> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           children: const [
-             HomeUiTab(),
-             CartUiTab(),
-             OrdersUiTab(),
-             ProfileUiTab(),
+            HomeUiTab(),
+            CartUiTab(),
+            OrdersUiTab(),
+            ProfileUiTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -42,8 +42,9 @@ class _BaseUiState extends State<BaseUi> {
               () {
                 indexPage = value;
                 // pageController.jumpToPage(value);
-                pageController.animateToPage(value
-                , duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
+                pageController.animateToPage(value,
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeInOut);
               },
             );
           },
