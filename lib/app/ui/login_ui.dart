@@ -1,18 +1,16 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quitanda_virtual/app/routes/app_routes.dart';
+import 'package:quitanda_virtual/app/controller/login_controller.dart';
 
 import 'package:quitanda_virtual/app/ui/colors/custom_colors.dart';
 import 'package:quitanda_virtual/app/ui/components/custom,_app_name.dart';
 import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 import 'package:quitanda_virtual/app/ui/register_ui.dart';
 
-class LoginUi extends StatelessWidget {
-  LoginUi({super.key});
-  final _formKey = GlobalKey<FormState>();
-  final _controllerEmail = TextEditingController();
-  final _controllerPassword = TextEditingController();
+class LoginUi extends GetView<LoginController> {
+  const LoginUi({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,12 +71,12 @@ class LoginUi extends StatelessWidget {
                     ),
                   ),
                   child: Form(
-                    key: _formKey,
+                    key: controller.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         CustomTextField(
-                          controller: _controllerEmail,
+                          controller: controller.controllerEmail,
                           labelText: "Email",
                           iconPref: Icons.email,
                           validator: (email) {
@@ -92,7 +90,7 @@ class LoginUi extends StatelessWidget {
                           },
                         ),
                         CustomTextField(
-                          controller: _controllerPassword,
+                          controller: controller.controllerPassword,
                           labelText: "Senha",
                           iconPref: Icons.lock,
                           isSecret: true,
@@ -108,26 +106,29 @@ class LoginUi extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 40,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  18,
+                          child: Obx(
+                            () => ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    18,
+                                  ),
+                                ),
+                                textStyle: const TextStyle(
+                                  fontSize: 18,
                                 ),
                               ),
-                              textStyle: const TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                print(_controllerEmail.text);
-                                print(_controllerPassword.text);  
-                                Get.offAllNamed(AppRoutes.BASE_UI);
-                              }
-                            },
-                            child: const Text(
-                              "Entrar",
+                              onPressed: controller.isLoading.value
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+                                      controller.sigin();
+                                    },
+                              child: controller.isLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : const Text(
+                                      "Entrar",
+                                    ),
                             ),
                           ),
                         ),

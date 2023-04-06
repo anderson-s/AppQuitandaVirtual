@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:quitanda_virtual/app/binding/login_binding.dart';
 import 'package:quitanda_virtual/app/routes/app_routes.dart';
 import 'package:quitanda_virtual/app/ui/base_ui.dart';
 import 'package:quitanda_virtual/app/ui/login_ui.dart';
@@ -15,6 +16,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.LOGIN_UI,
       page: () => LoginUi(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.REGISTER_UI,
