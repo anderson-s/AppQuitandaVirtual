@@ -11,6 +11,8 @@ import 'package:quitanda_virtual/app/ui/register_ui.dart';
 class LoginUi extends StatelessWidget {
   LoginUi({super.key});
   final _formKey = GlobalKey<FormState>();
+  final _controllerEmail = TextEditingController();
+  final _controllerPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,6 +78,7 @@ class LoginUi extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         CustomTextField(
+                          controller: _controllerEmail,
                           labelText: "Email",
                           iconPref: Icons.email,
                           validator: (email) {
@@ -89,6 +92,7 @@ class LoginUi extends StatelessWidget {
                           },
                         ),
                         CustomTextField(
+                          controller: _controllerPassword,
                           labelText: "Senha",
                           iconPref: Icons.lock,
                           isSecret: true,
@@ -117,6 +121,8 @@ class LoginUi extends StatelessWidget {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
+                                print(_controllerEmail.text);
+                                print(_controllerPassword.text);  
                                 Get.offAllNamed(AppRoutes.BASE_UI);
                               }
                             },
