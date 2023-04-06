@@ -9,8 +9,8 @@ import 'package:quitanda_virtual/app/ui/components/custom_textfield.dart';
 import 'package:quitanda_virtual/app/ui/register_ui.dart';
 
 class LoginUi extends StatelessWidget {
-  const LoginUi({super.key});
-
+  LoginUi({super.key});
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,107 +70,130 @@ class LoginUi extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const CustomTextField(
-                        labelText: "Email",
-                        iconPref: Icons.email,
-                      ),
-                      const CustomTextField(
-                        labelText: "Senha",
-                        iconPref: Icons.lock,
-                        isSecret: true,
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                18,
-                              ),
-                            ),
-                            textStyle: const TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.offAllNamed(AppRoutes.BASE_UI);
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CustomTextField(
+                          labelText: "Email",
+                          iconPref: Icons.email,
+                          validator: (email) {
+                            if (email == null || email.isEmpty) {
+                              return "Digite seu email!";
+                            }
+                            if (!email.isEmail) {
+                              return "Digite um email válido!";
+                            }
+                            return null;
                           },
-                          child: const Text(
-                            "Entrar",
-                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Esqueceu a senha?",
-                            style: TextStyle(
-                              color: CustomColors.customContrastColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: Colors.grey.withAlpha(90),
-                                thickness: 2,
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 15,
-                              ),
-                              child: Text(
-                                "Ou",
-                              ),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Colors.grey.withAlpha(90),
-                                thickness: 2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            Get.to(RegisterUi(),
-                                transition: Transition.rightToLeft);
+                        CustomTextField(
+                          labelText: "Senha",
+                          iconPref: Icons.lock,
+                          isSecret: true,
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return "Digite sua senha!";
+                            }
+                            if (password.length < 7) {
+                              return "A senha deve possuir pelo menos 7 caracteres!";
+                            }
+                            return null;
                           },
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                18,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  18,
+                                ),
+                              ),
+                              textStyle: const TextStyle(
+                                fontSize: 18,
                               ),
                             ),
-                            side: BorderSide(
-                              width: 2,
-                              color: CustomColors.customSwatchColor,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                Get.offAllNamed(AppRoutes.BASE_UI);
+                              }
+                            },
+                            child: const Text(
+                              "Entrar",
                             ),
-                            textStyle: TextStyle(
-                              fontSize: 18,
-                              color: CustomColors.customSwatchColor,
-                            ),
-                          ),
-                          child: const Text(
-                            "Criar Conta",
                           ),
                         ),
-                      )
-                    ],
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Esqueceu a senha?",
+                              style: TextStyle(
+                                color: CustomColors.customContrastColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey.withAlpha(90),
+                                  thickness: 2,
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                ),
+                                child: Text(
+                                  "Ou",
+                                ),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey.withAlpha(90),
+                                  thickness: 2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Get.to(RegisterUi(),
+                                  transition: Transition.rightToLeft);
+                            },
+                            style: OutlinedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  18,
+                                ),
+                              ),
+                              side: BorderSide(
+                                width: 2,
+                                color: CustomColors.customSwatchColor,
+                              ),
+                              textStyle: TextStyle(
+                                fontSize: 18,
+                                color: CustomColors.customSwatchColor,
+                              ),
+                            ),
+                            child: const Text(
+                              "Criar Conta",
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],

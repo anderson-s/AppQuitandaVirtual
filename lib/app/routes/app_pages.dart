@@ -14,7 +14,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: AppRoutes.LOGIN_UI,
-      page: () => const LoginUi(),
+      page: () => LoginUi(),
     ),
     GetPage(
       name: AppRoutes.REGISTER_UI,
