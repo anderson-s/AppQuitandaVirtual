@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quitanda_virtual/app/controller/services/utils_services.dart';
 import 'package:quitanda_virtual/app/data/model/order_model.dart';
 
@@ -23,9 +22,9 @@ class PaymentDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-               const Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 10),
-                  child:  Text(
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
                     "Pagamento com Pix",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -33,11 +32,11 @@ class PaymentDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                QrImage(
-                  data: DateTime.now().millisecondsSinceEpoch.toString(),
-                  version: QrVersions.auto,
-                  size: 200.0,
-                ),
+                // QrImage(
+                //   data: DateTime.now().millisecondsSinceEpoch.toString(),
+                //   version: QrVersions.auto,
+                //   size: 200.0,
+                // ),
                 Text(
                   "Vencimento: ${UtilServices().formatDateTime(order.overdueDateTime)}",
                   style: const TextStyle(
