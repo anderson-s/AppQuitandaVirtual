@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/src/auth/sign_up_screen.dart';
 import 'package:quitanda_virtual/src/auth/widgets/custom_text_field.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 
@@ -82,16 +83,16 @@ class SignInScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const CustomTextField(
-                      labelText: "Email",
-                      icon: Icon(
-                        Icons.email,
-                      ),
-                    ),
+                        labelText: "Email",
+                        icon: Icon(
+                          Icons.email,
+                        ),
+                        inputFormatters: []),
                     const CustomTextField(
-                      labelText: "Senha",
-                      isSecret: true,
-                      icon: Icon(Icons.lock),
-                    ),
+                        labelText: "Senha",
+                        isSecret: true,
+                        icon: Icon(Icons.lock),
+                        inputFormatters: []),
                     SizedBox(
                       height: 35,
                       child: ElevatedButton(
@@ -160,7 +161,11 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SignUpScreen(),
+                          ));
+                        },
                         child: const Text(
                           "Criar conta",
                           style: TextStyle(
