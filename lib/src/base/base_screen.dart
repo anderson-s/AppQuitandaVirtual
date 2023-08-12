@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
+
+  @override
+  State<BaseScreen> createState() => _BaseScreenState();
+}
+
+class _BaseScreenState extends State<BaseScreen> {
+  int indexPage = 0;
+  final pageController = PageController();
+  trocaDePaginas(int index) {
+    setState(() {
+      indexPage = index;
+      pageController.jumpToPage(indexPage);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        onTap: (value) => trocaDePaginas(value),
+        currentIndex: indexPage,
         backgroundColor: Colors.green,
         unselectedItemColor: Colors.white.withAlpha(100),
         selectedItemColor: Colors.white,
@@ -30,8 +46,23 @@ class BaseScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.red,
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: [
+          Container(
+            color: Colors.red,
+          ),
+          Container(
+            color: Colors.black,
+          ),
+          Container(
+            color: Colors.green,
+          ),
+          Container(
+            color: Colors.blue,
+          ),
+        ],
       ),
     );
   }
