@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/auth/sign_up_screen.dart';
 import 'package:quitanda_virtual/src/auth/widgets/custom_text_field.dart';
+import 'package:quitanda_virtual/src/base/base_screen.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -96,7 +97,12 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       height: 35,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (_) => const BaseScreen(),
+                          ));
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
